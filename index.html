@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Expresso Gás | Água e Gás com entrega rápida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background-color: #e8f0fe;
+            color: #1e2a3a;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #0A2B4E 0%, #1A4A7A 100%);
+            backdrop-filter: blur(2px);
+            padding: 0.3rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border-bottom: 2px solid #F97316;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* ESTILO DA SUA LOGO - AJUSTE AQUI O TAMANHO SE NECESSÁRIO */
+        .logo-img {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            color: #FFD6B0;
+            font-weight: 400;
+            border-left: 1px solid #F97316;
+            padding-left: 0.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            transition: all 0.25s ease;
+            background: rgba(255,255,240,0.08);
+            color: #FFF5E6;
+            font-size: 0.95rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .nav-links a:hover {
+            background: #F97316;
+            color: #0A2B4E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(249,115,22,0.3);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-left: 0.5rem;
+        }
+
+        .btn-wa, .btn-ig {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            text-decoration: none;
+            color: white;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-wa {
+            background: #25D366;
+            box-shadow: 0 4px 10px rgba(37,211,102,0.3);
+        }
+        .btn-wa:hover {
+            background: #20b859;
+            transform: scale(1.02);
+        }
+        .btn-ig {
+            background: radial-gradient(circle at 30% 110%, #fdf497, #fd5949, #d6249f, #285AEB);
+            box-shadow: 0 4px 10px rgba(214, 41, 118, 0.3);
+        }
+        .btn-ig:hover {
+            transform: scale(1.02);
+        }
+
+        .hero {
+            background: linear-gradient(112deg, #EFF4FF 0%, #FFE8D9 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #FEC89A;
+        }
+        .hero h1 {
+            font-size: 2.7rem;
+            font-weight: 800;
+            color: #0A2B4E;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 1rem auto 0;
+            color: #C2410C;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            border-left: 6px solid #F97316;
+            padding-left: 1rem;
+            margin: 2rem 0 1.5rem 0;
+            color: #0A2B4E;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid rgba(249,115,22,0.2);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 40px rgba(249,115,22,0.2);
+        }
+        .product-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background: #f2e8d5;
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-info h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1E3A5F;
+        }
+        .product-category {
+            display: inline-block;
+            background: #FFF0E5;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #F97316;
+            margin-bottom: 0.8rem;
+        }
+        .product-desc {
+            color: #2c4a41;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .price-contact {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #EA580C;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #FFF0E5;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            width: fit-content;
+        }
+        .btn-order {
+            background: #0A2B4E;
+            border: none;
+            padding: 0.7rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-order:hover {
+            background: #F97316;
+            color: #0A2B4E;
+        }
+
+        .brands-section {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFF8F0 100%);
+            border-radius: 48px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(249,115,22,0.3);
+        }
+        .brands-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0A2B4E;
+            margin-bottom: 2rem;
+        }
+        .brands-title span {
+            color: #F97316;
+        }
+        .brands-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        .brand-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1rem 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            min-width: 140px;
+            height: 90px;
+        }
+        .brand-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(249,115,22,0.15);
+            border: 1px solid #F97316;
+        }
+        .brand-item img {
+            max-width: 130px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .info-section {
+            background: #ffffffdd;
+            border-radius: 48px;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(125deg, #FFF8F0 0%, #ffffff 100%);
+            border: 1px solid #FBC490;
+        }
+        .info-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        .info-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255,245,225,0.5);
+            border-radius: 32px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .info-card h4 {
+            font-size: 1.6rem;
+            color: #EA580C;
+        }
+
+        .schedule-box {
+            background: #0A2B4E;
+            border-radius: 32px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: white;
+        }
+        .schedule-box h3 {
+            color: #F97316;
+            margin-bottom: 1rem;
+        }
+        .schedule-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        .schedule-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        .gift-badge {
+            background: #F97316;
+            color: #0A2B4E;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background: #0A2B4E;
+            color: #d9e3df;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-radius: 32px 32px 0 0;
+        }
+        footer a {
+            color: #FFB347;
+            text-decoration: none;
+        }
+
+        @media (max-width: 880px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .social-buttons {
+                justify-content: center;
+                margin-left: 0;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 560px) {
+            .container {
+                padding: 1rem;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .wa-icon, .ig-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .wa-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23ffffff' d='M24 4A20 20 0 0 0 4 24c0 3.7 1 7.2 2.8 10.2L4 44l10-2.5A20 20 0 0 0 24 44 20 20 0 0 0 24 4zm0 36c-3 0-5.8-.8-8.3-2.3l-.6-.3-6 1.5 1.6-5.7-.4-.6A16 16 0 0 1 8 24a16 16 0 1 1 16 16zm8.5-12.3c-.5-.2-2.9-1.4-3.3-1.6-.4-.2-.7-.2-1 .2-.3.4-1.2 1.6-1.5 1.9-.3.3-.5.3-1 .1-2.3-1-3.8-1.8-5.4-3.6-.4-.4-.6-.8 1-2.2.3-.3.5-.6.6-1 .2-.4 0-.7-.1-1-.1-.2-1-2.3-1.3-3.2-.3-.8-.7-.7-1-.7h-.8c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.2 0 2 1.4 3.8 1.6 4 .2.3 2.8 4.2 6.7 5.9.9.4 1.7.6 2.3.8 1 .3 1.9.2 2.6.1.8-.1 2.4-1 2.8-2 .4-1 .4-1.8.3-2-.1-.1-.2-.2-.4-.3z'/%3E%3C/svg%3E");
+        }
+        .ig-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3CradialGradient id='grad' cx='30%25' cy='60%25' r='80%25'%3E%3Cstop offset='0%25' stop-color='%23fdf497'/%3E%3Cstop offset='30%25' stop-color='%23fd5949'/%3E%3Cstop offset='70%25' stop-color='%23d6249f'/%3E%3Cstop offset='100%25' stop-color='%23285AEB'/%3E%3C/radialGradient%3E%3Cpath fill='url(%23grad)' d='M24 8c4.2 0 4.7 0 6.4.1 1.5.1 2.5.3 3.4.6.9.3 1.7.7 2.4 1.4.7.7 1.1 1.5 1.4 2.4.3.9.5 1.9.6 3.4.1 1.7.1 2.2.1 6.4s0 4.7-.1 6.4c-.1 1.5-.3 2.5-.6 3.4-.3.9-.7 1.7-1.4 2.4-.7.7-1.5 1.1-2.4 1.4-.9.3-1.9.5-3.4.6-1.7.1-2.2.1-6.4.1s-4.7 0-6.4-.1c-1.5-.1-2.5-.3-3.4-.6-.9-.3-1.7-.7-2.4-1.4-.7-.7-1.1-1.5-1.4-2.4-.3-.9-.5-1.9-.6-3.4-.1-1.7-.1-2.2-.1-6.4s0-4.7.1-6.4c.1-1.5.3-2.5.6-3.4.3-.9.7-1.7 1.4-2.4.7-.7 1.5-1.1 2.4-1.4.9-.3 1.9-.5 3.4-.6 1.7-.1 2.2-.1 6.4-.1z'/%3E%3Ccircle fill='%23ffffff' cx='24' cy='24' r='7'/%3E%3Cpath fill='%23ffffff' d='M33 13.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo-area">
+        <!-- ⬇️⬇️⬇️ COLOQUE O NOME DO SEU ARQUIVO PNG AQUI ⬇️⬇️⬇️ -->
+        <img src="LOGO-EXPRESSO-GÁS-VETORIZADO.png" alt="Expresso Gás" class="logo-img">
+        <!-- ⬆️⬆️⬆️ MUDE SOMENTE O "logo.png" para o nome do seu arquivo ⬆️⬆️⬆️ -->
+        <span class="tagline">água & gás • entrega rápida</span>
+    </div>
+    <div class="nav-links">
+        <a href="#produtos-gas">Gás P13</a>
+        <a href="#produtos-gas">Gás P45</a>
+        <a href="#produtos-agua">Água Mineral</a>
+        <a href="#produtos-agua">Galão 20L</a>
+        <a href="#produtos-agua">Galão 10L</a>
+        <a href="#acessorios">Acessórios</a>
+        <a href="#sobre">Diferenciais</a>
+    </div>
+    <div class="social-buttons">
+        <a href="https://wa.me/5515997254211" target="_blank" class="btn-wa">
+            <span class="wa-icon"></span> WhatsApp
+        </a>
+        <a href="https://www.instagram.com/expressogassorocaba" target="_blank" class="btn-ig">
+            <span class="ig-icon"></span> Instagram
+        </a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1> Entregamos conforto e segurança</h1>
+    <p>Gás de cozinha, água purificada e acessórios. Peça pelo WhatsApp e receba em casa com atendimento de qualidade.</p>
+</section>
+
+<main class="container">
+    <h2 id="produtos-gas" class="section-title">🔥 Botijões de Gás</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <img class="product-img" src="imagens/botijao-p13.png" alt="Botijão de gás P13">
+            <div class="product-info">
+                <span class="product-category">Gás Liquefeito</span>
+                <h3>Botijão P13</h3>
+                <p class="product-desc">Ideal para residências. Capacidade 13kg, alta durabilidade e segurança.</p>
+                <div class="price-contact">💰 Consulte o preço via WhatsApp</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Olá!%20Gostaria%20de%20saber%20o%20preço%20do%20BOTIJÃO%20P13','_blank')">📦 Consultar preço</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img class="product-img" src="imagens/botijao-p45.png" alt="Botijão P45">
+            <div class="product-info">
+                <span class="product-category">Gás Industrial</span>
+                <h3>Botijão P45</h3>
+                <p class="product-desc">Perfeito para restaurantes e comércios. 45kg de potência.</p>
+                <div class="price-contact">💰 Consulte o preço via WhatsApp</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Quero%20saber%20o%20preço%20do%20botijão%20P45','_blank')">📦 Consultar preço</button>
+            </div>
+        </div>
+        <div class="product-card" style="border: 2px solid #F97316;">
+            <img class="product-img" src="https://placehold.co/600x400/F97316/FFF?text=BRINDE" alt="Brinde">
+            <div class="product-info">
+                <span class="product-category">🎁 BRINDE EXCLUSIVO</span>
+                <h3>Todo pedido de Gás ganha brinde!</h3>
+                <p class="product-desc">Nas entregas de botijão, você recebe um brinde especial!</p>
+                <div class="price-contact">🎉 Brinde por cortesia</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Quero%20pedir%20gás%20e%20ganhar%20brinde','_blank')">🎁 Pedir gás</button>
+            </div>
+        </div>
+    </div>
+
+    <h2 id="produtos-agua" class="section-title">💧 Água Purificada & Mineral</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <img class="product-img" src="imagens/galao-20l.png" alt="Galão 20L">
+            <div class="product-info">
+                <span class="product-category">Água Mineral</span>
+                <h3>Galão 20L</h3>
+                <p class="product-desc">Água cristalina, pH equilibrado, garrafa retornável.</p>
+                <div class="price-contact">💰 Consulte o preço via WhatsApp</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Quero%20saber%20preço%20Galão%2020L','_blank')">💧 Consultar preço</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img class="product-img" src="imagens/galao-10l.png" alt="Galão 10L">
+            <div class="product-info">
+                <span class="product-category">Água Mineral</span>
+                <h3>Galão 10L</h3>
+                <p class="product-desc">Prático e leve, perfeito para pequenos espaços.</p>
+                <div class="price-contact">💰 Consulte o preço via WhatsApp</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Quero%20preço%20Galão%2010L','_blank')">💧 Consultar preço</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img class="product-img" src="imagens/500ml.png" alt="Pack 500ml">
+            <div class="product-info">
+                <span class="product-category">Água Pura</span>
+                <h3>Pack 12x Garrafas 500ml</h3>
+                <p class="product-desc">Prático para consumo individual e eventos.</p>
+                <div class="price-contact">💰 Consulte o preço via WhatsApp</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Quero%20preço%20pack%20500ml','_blank')">💧 Consultar preço</button>
+            </div>
+        </div>
+    </div>
+
+    <h2 id="acessorios" class="section-title">🛠️ Acessórios</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <img class="product-img" src="imagens/regulador.png" alt="Kit regulador">
+            <div class="product-info">
+                <span class="product-category">Segurança</span>
+                <h3>Kit Regulador de Pressão</h3>
+                <p class="product-desc">Regulador certificado Inmetro.</p>
+                <div class="price-contact">💰 Consulte o preço</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Preço%20Kit%20Regulador','_blank')">🔧 Consultar</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img class="product-img" src="imagens/suporte-galao.png" alt="Suporte">
+            <div class="product-info">
+                <span class="product-category">Apoio</span>
+                <h3>Suporte para Galão</h3>
+                <p class="product-desc">Suporte resistente para galões.</p>
+                <div class="price-contact">💰 Consulte o preço</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Preço%20Suporte%20Galão','_blank')">💧 Consultar</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img class="product-img" src="imagens/bomba.png" alt="Bomba">
+            <div class="product-info">
+                <span class="product-category">Acessório</span>
+                <h3>Bomba de Água Manual</h3>
+                <p class="product-desc">Fácil instalação, ideal para galões.</p>
+                <div class="price-contact">💰 Consulte o preço</div>
+                <button class="btn-order" onclick="window.open('https://wa.me/5515997254211?text=Preço%20Bomba%20Manual','_blank')">🚰 Consultar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="brands-section">
+        <div class="brands-title">🌟 Marcas que <span>trabalhamos</span></div>
+        <div class="brands-grid">
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Logotipo_Liquig%C3%A1s.png" alt="Liquigás"></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Ultragaz_logo_2021.png" alt="Ultragaz"></div>
+            <div class="brand-item"><img src="https://static.wixstatic.com/media/67dc92_83b4fcf272044a3c8065c5095eebf4f9~mv2.png/v1/crop/x_0,y_776,w_2363,h_839/fill/w_280,h_99,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/klarina-logo-02.png" alt="Klarina"></div>
+            <div class="brand-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBToYjCYWkJPrv2GJ-P8NynheQRqrji3AZ6A&s" alt="Ibirá"></div>
+            <div class="brand-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHWDh9u5LvvggfggbXIiJg_E8g4fhRFLRUCw&s" alt="Sarapuí"></div>
+            <div class="brand-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHXvlwLeK144E1TpMuS0iLwsDxSTmPAxTdoQ&s" alt="Ecoleve"></div>
+        </div>
+    </div>
+
+    <div id="sobre" class="info-section">
+        <h2 style="font-size:1.9rem; margin-bottom:1.5rem;">📦 Por que escolher a Expresso Gás?</h2>
+        <div class="info-flex">
+            <div class="info-card"><h4>🔐 Segurança</h4><p>Botijões com lacre e válvulas novas.</p></div>
+            <div class="info-card"><h4>💳 Pagamento fácil</h4><p>Dinheiro, PIX, cartão na entrega.</p></div>
+            <div class="info-card"><h4>♻️ Sustentabilidade</h4><p>Recolhemos vasilhames vazios.</p></div>
+        </div>
+        <div class="schedule-box">
+            <h3>🕒 Horário de Funcionamento</h3>
+            <div class="schedule-grid">
+                <div class="schedule-item"><p><strong>📆 Atendimento:</strong></p><p>Seg-Sex: 08h às 20h</p><p>Sáb: 08h às 15h</p><p>Dom: FECHADO</p></div>
+                <div class="schedule-item"><p><strong>💧 Pedidos de Água:</strong></p><p>Seg-Sex: até 16:30</p><p>Sáb: até 12:30</p></div>
+                <div class="schedule-item"><p><strong>🔥 Gás:</strong></p><p>🔔 Brinde especial!</p></div>
+            </div>
+            <div class="gift-badge">🎁 Toda entrega de GÁS ganha brinde! 🎁</div>
+        </div>
+        <div style="margin-top:2rem; background:#FAF0E1; border-radius:40px; padding:1.5rem;">
+            <h3 style="color:#EA580C;">🏠 Endereço:</h3>
+            <p><strong>Rua Garcia Redondo, 45 - Vila Jardini, Sorocaba/SP | CEP 18044-280</strong></p>
+        </div>
+    </div>
+
+    <div style="background:#FFE5CC; border-radius:48px; padding:2rem; text-align:center; margin:2rem 0;">
+        <h2 style="color:#0A2B4E;">🚚 Peça pelo WhatsApp!</h2>
+        <a href="https://wa.me/5515997254211" target="_blank" style="display:inline-flex; background:#25D366; color:white; padding:14px 32px; border-radius:60px; text-decoration:none; font-weight:bold; font-size:1.2rem; margin-top:1rem;">💬 Falar com a Expresso Gás</a>
+    </div>
+</main>
+
+<footer>
+    <p>📍 Rua Garcia Redondo, 45 - Vila Jardini, Sorocaba/SP | CEP 18044-280</p>
+    <p>📞 (15) 99725-4211 (WhatsApp) | © 2025 Expresso Gás</p>
+    <p><a href="https://www.instagram.com/expressogassorocaba" target="_blank">Instagram @expressogassorocaba</a></p>
+</footer>
+
+<script>
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
